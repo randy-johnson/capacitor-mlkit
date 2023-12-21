@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.4.0
+
+### Minor Changes
+
+- [`2b390c1`](https://github.com/capawesome-team/capacitor-mlkit/commit/2b390c126fccf6e5d71772153c38bd81d27854c4) ([#112](https://github.com/capawesome-team/capacitor-mlkit/pull/112)): feat: zoom functionality
+
 ## 5.3.0
 
 ## 5.2.0
