@@ -409,8 +409,21 @@ public class BarcodeScanner implements ImageAnalysis.Analyzer {
 
     private BarcodeScannerOptions buildBarcodeScannerOptions(ScanSettings scanSettings) {
         int[] formats = scanSettings.formats.length == 0 ? new int[] { Barcode.FORMAT_ALL_FORMATS } : scanSettings.formats;
-        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder().setBarcodeFormats(formats[0], formats).build();
+        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
+            .setBarcodeFormats(formats[0], formats)
+            .setZoomSuggestionOptions(
+                new ZoomSuggestionOptions.Builder(zoomCallback).setMaxSupportedZoomRatio(maxSupportedZoomRatio).build()
+            )
+            .build();
         return options;
+    }
+
+    private boolean setZoom(float zoomRatio) {
+        if (camera.isClosed()) {
+            return false;
+        }
+        camera.getCameraControl().setZoomRatio(zoomRatio);
+        return true;
     }
 
     private GmsBarcodeScannerOptions buildGmsBarcodeScannerOptions(ScanSettings scanSettings) {
